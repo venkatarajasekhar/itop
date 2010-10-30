@@ -1,0 +1,45 @@
+.TH ITOP 8
+.ad
+.fi
+.SH NAME
+itop \- display processor interrupt rate and usage
+.SH SYNOPSIS
+.na
+.nf
+.fi
+\fBitop\fR [\fB-V\fR]
+.SH DESCRIPTION
+\fBitop\fR provides a real-time view of the use of interrupts by system drivers.
+It can help identify which devices emit most interrupts and give an overall
+view of I/O load distribution.
+.LP
+\fBitop\fR is an interactive application, with a curses(3) text interface.
+.SH OPTIONS
+.TP
+.B "\-V"
+Display the program name and version number, then exit.
+.SH USAGE
+.LP
+Available commands are:
+.B o <key>
+Sort order selection:
+.IP
+r: Interrupt rate
+.IP 
+n: Driver name
+.IP
+t: Total interrupt count
+.IP
+l: Interrupt line number
+.IP
+t: Interrupt line type (e.g. APIC)
+.SH BUGS
+Only supports Linux.
+.SH FILES
+/proc/interrupts
+.SH "SEE ALSO"
+vmstat(8), top(1)
+.SH AUTHOR
+.NA
+.NF
+kos@bastard.net

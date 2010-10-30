@@ -1,0 +1,22 @@
+$Id: TODO,v 1.11 2008-07-29 00:46:11 kos Exp $
+
+Issues
+------
+
+Release goals: 0.3
+-------------------
+- fix parser so that driver names with space don't mess it up
+- keep max, median overall interrupt rates
+- show which cpu is being most active, perhaps another column to sort on
+- show visually that we're waiting for sort key when (o) is pressed
+- convert well-known interrupt names to shorter names for brevity
+- more detail on the man page
+
+New features
+------------
+- data logger
+- import other data sources to provide better system status
+- colors and bold and stuff
+
+Deprioritized
+-------------

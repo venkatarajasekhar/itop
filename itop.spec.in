@@ -1,0 +1,36 @@
+Summary: Interrupt top
+Name: @PACKAGE@
+Version: @VERSION@
+Release: 1
+Copyright: GPL
+Group: Applications/System
+Source: http://www.bastard.net/~kos/stuff/%{name}-%{version}.tar.gz
+URL: http://www.bastard.net/~kos/
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
+%description
+ssidsniff is an application to help identify wireless access points.
+
+%prep
+%setup
+
+%build
+%configure
+make $MAKE_FLAGS
+
+%install
+rm -rf $RPM_BUILD_ROOT
+%makeinstall
+
+%clean
+rm -rf $RPM_BUILD_ROOT
+
+%files
+%defattr(-, root, root, 0755)
+%doc AUTHORS ChangeLog COPYING NEWS README TODO itop.8
+%{_bindir}/*
+%{_mandir}/*
+
+%changelog
+* Sat Jul 26 2008 Kostas <kos@bastard.net> - @VERSION@
+- Initial package

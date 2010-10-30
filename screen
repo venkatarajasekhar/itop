@@ -1,0 +1,8 @@
+sanchez: 2.6.18-6-amd64, 2 cpus, 18 int lines, 0 errors, 0 misses
+Interrupt|||||||||||||||||||||||||||||Rate|||Total||Line||Type|||||||||||||||||
+eth0                                  16     85M    201   level
+eth1                                  4      444M   177   level
+ohci_hcd:usb1                         0      444M   177   level
+timer                                 10     1G     0     edge
+i8042                                 3      56K    1     pic
+rtc                                   12     1.8M   8     msi

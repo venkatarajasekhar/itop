@@ -1,0 +1,47 @@
+dnl 
+dnl $Id: configure.in,v 1.3 2008-07-29 00:46:11 kos Exp $
+dnl 
+
+AC_INIT
+
+AM_CONFIG_HEADER(config.h)
+AM_INIT_AUTOMAKE(itop, 0.2)
+
+dnl Checks for programs.
+AC_PROG_INSTALL(/usr/bin/install)
+AC_PROG_CC
+AC_PROG_MAKE_SET
+
+if test "$GCC" = "yes"; then
+  CFLAGS="-Wall -fno-strict-aliasing "${CFLAGS}
+fi
+
+dnl curses compatible library checks
+AC_ARG_WITH(libcurses,
+    [  --with-libcurses=DIR     Curses library location],
+    CFLAGS="-I${withval}/include $CFLAGS"
+    CPPFLAGS="-I${withval}/include $CPPFLAGS"
+    LIBS="-L${withval}/lib -lcurses $LIBS"
+)
+AC_CHECK_HEADERS(curses.h,,
+    echo '***'
+    echo '*** Check for curses headers failed. Use --with-libcurses option to specify location'
+    echo '***'
+    sleep 1
+)
+AC_CHECK_LIB(curses, move)
+
+dnl standard checks, they take a long time
+AC_CHECK_LIB(m, ceilf)
+AC_HEADER_STDC
+AC_CHECK_HEADERS(strings.h sys/time.h syslog.h unistd.h getopt.h errno.h)
+
+dnl AC_CHECK_TYPES([u_int8_t u_int16_t u_int32_t])
+AC_FUNC_MEMCMP
+AC_FUNC_SETPGRP
+AC_TYPE_SIGNAL
+AC_FUNC_STRFTIME
+AC_FUNC_VPRINTF
+AC_CHECK_FUNCS(getcwd gethostname socket strdup strerror snprintf localtime_r gmtime_r vsyslog)
+
+AC_OUTPUT([Makefile itop.spec])

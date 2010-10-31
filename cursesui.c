@@ -119,9 +119,9 @@ header_show() {
   char line[DEF_LINELEN];
   
   move(UI_STATUS_POS, 0);
-  snprintf(line, DEF_LINELEN, "%s %c %s %s, %u cpu%s, %lu errors, %.1f int/s",
+  snprintf(line, DEF_LINELEN, "%s %c %s %s, %u cpu%s, %llu errors, %.1f int/s",
 	   un.nodename, rotseq[(spindex)%4], un.sysname, un.release,
-	   ic->nprocs, ic->nprocs>1?"s":"", ic->errors, ic->rate);
+	   ic->ncpus, ic->ncpus>1?"s":"", ic->errors, ic->rate);
   printw(line);
   move(UI_STATUS_POS+1, 0);
 
@@ -168,7 +168,7 @@ list_show() {
   // print content
   for(i=0; i < LINES; i++) {
     
-    if(ic->line[i].line == -1)
+    if(i >= ic->nlines)
       break;
 
     column=0;

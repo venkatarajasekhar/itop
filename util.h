@@ -85,7 +85,7 @@ typedef struct strings_t {
   int start;
 } strings_t;
 
-void tokenize(char *usrc, char **tokens, int *ntokens);
+void tokenize(char *usrc, char **tokens, int *ntokens, int max_tokens);
 char *geek_print(uint64_t);
 char *mac2ascii(unsigned char *);
 char *hex2ascii(unsigned char *, int);

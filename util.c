@@ -36,12 +36,12 @@
 #include "util.h"
 
 void
-tokenize(char *usrc, char **tokens, int *ntokens) {
+tokenize(char *usrc, char **tokens, int *ntokens, int max_tokens) {
   int i;
   static char src[DEF_LINELEN];
   
   strncpy(src, usrc, DEF_LINELEN);
-  for(i=1,tokens[0] = strtok(src, " :\n"); (tokens[i]=strtok(NULL, " ,\n")); i++)
+  for(i=1,tokens[0] = strtok(src, " :\n"); i<max_tokens && (tokens[i]=strtok(NULL, " ,\n")); i++)
     ;
   *ntokens = i;
 }

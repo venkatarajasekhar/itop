@@ -27,7 +27,6 @@
 #include <stdint.h>
 
 #include "util.h"
-#define COLLECT_MAX 1024
 #define PROC_FILE "/proc/interrupts"
 
 typedef struct {
@@ -36,19 +35,22 @@ typedef struct {
   char name[DEF_LINELEN];
   uint64_t count;
   double rate;
-  struct timeval tvp;
+  struct timeval ts_last_sample;
 } int_line_t;
 
 typedef struct {
+  unsigned int ncpus;
+  unsigned int nlines;
   uint64_t errors;
   uint64_t misses;
   uint64_t nmis;
   uint64_t locs;
-  unsigned int nprocs;
   time_t start;
-  int_line_t line[COLLECT_MAX];
-  unsigned int nlines;
+  char** cpu_ident;
+  int_line_t* line;
   double rate;
+  int max_tokens;
+  char **tokens;
 } int_collect_t;
 
 int_collect_t *collect_new();

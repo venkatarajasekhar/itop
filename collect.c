@@ -82,7 +82,7 @@ collect_schema(int_collect_t* it) {
     it->nlines++;
   }
 
-  it->cpu_ident = (char **)xmalloc(it->ncpus);
+  it->cpu_ident = (char **)xmalloc(it->ncpus * sizeof(char*));
   it->max_tokens = 256+2*it->ncpus;
   it->tokens = (char **)xmalloc(it->max_tokens);
   it->line = (int_line_t *)xcalloc(it->nlines, sizeof(int_line_t));

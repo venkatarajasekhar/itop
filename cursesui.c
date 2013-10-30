@@ -121,7 +121,8 @@ header_show() {
   move(UI_STATUS_POS, 0);
   snprintf(line, DEF_LINELEN, "%s %c %s %s, %u cpu%s, %llu errors, %.1f int/s",
 	   un.nodename, rotseq[(spindex)%4], un.sysname, un.release,
-	   ic->ncpus, ic->ncpus>1?"s":"", ic->errors, ic->rate);
+	   ic->ncpus, ic->ncpus>1?"s":"", 
+	   (long long unsigned int)ic->errors, ic->rate);
   printw(line);
   move(UI_STATUS_POS+1, 0);
 
@@ -166,7 +167,7 @@ list_show() {
   attroff(A_REVERSE);  
 
   // print content
-  for(i=0; i < LINES; i++) {
+  for(i=0; i < LINES-2; i++) {
     
     if(i >= ic->nlines)
       break;
@@ -175,7 +176,8 @@ list_show() {
     for(field_id=0; uifield[field_id].cursize; field_id++) {
       move(UI_MAIN_POS+i, column);
       field_get_value(field_id, &ic->line[i], value, DEF_LINELEN);
-      printw(value);
+      snprintf(format, DEF_LINELEN, "%%-%ds", uifield[field_id].cursize);
+      printw(format, value);
       column += uifield[field_id].size;
     }
   }
